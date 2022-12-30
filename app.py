@@ -14,6 +14,10 @@ if uploaded_file is not None:
     # st.dataframe(df)
 
     user_list = df.user.unique().tolist()
+    try:
+    	user_list.remove('group_notification')
+    except:
+    	pass
     user_list.sort()
     user_list.insert(0,'Overall')
     selected_user = st.sidebar.selectbox("Show analysis wrt", user_list)
@@ -112,6 +116,7 @@ if uploaded_file is not None:
     	with col1:
     		st.subheader('Most Busiest Member')
     		ax.bar(x.index, x.values,color='purple')
+    		plt.xticks(rotation='vertical')
     		st.pyplot(fig)
     	# with col2:
     	# 	st.dataframe(new_df)
